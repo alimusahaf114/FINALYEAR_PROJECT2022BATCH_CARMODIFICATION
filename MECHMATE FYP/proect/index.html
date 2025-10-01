@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Car</title>
+  <style>
+    .car {
+      width: 200px;
+      margin: 20px;
+      cursor: pointer;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+    .car:hover {
+      border-color: #2563eb;
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <h2>Select a Car</h2>
+
+  <!-- Car Images -->
+  <img src="../CAR IMAGES/SelectionPage/alto.jpg" class="car" onclick="selectCar('alto')">
+  <img src="../CAR IMAGES/SelectionPage/audi.jpg" class="car" onclick="selectCar('Corolla')">
+  <img src="../CAR IMAGES/SelectionPage/civic.jpg" class="car" onclick="selectCar('Alto')">
+  <img src="../CAR IMAGES/SelectionPage/corolla.jpg" class="car" onclick="selectCar('Audi')">
+
+  <script>
+    function selectCar(car) {
+      // Redirect to customization page with car name as parameter
+      window.location.href = "page2.html?car=" + car;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Car - MechMate</title>
+    <link rel="stylesheet" href="../CSS/page2.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo" onclick="goBack()">
+                🚗 MechMate
+            </a>
+            <a href="#" class="back-button" onclick="goBack()">
+                ← Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Progress Bar -->
+    <section class="progress-section">
+        <div class="progress-container">
+            <div class="progress-title">Your Customization Journey</div>
+            <div class="progress-bar">
+                <div class="progress-step active">
+                    <div class="step-number">1</div>
+                    <span>Choose Car</span>
+                </div>
+                <div class="progress-arrow">→</div>
+                <div class="progress-step inactive">
+                    <div class="step-number">2</div>
+                    <span>Customize</span>
+                </div>
+                <div class="progress-arrow">→</div>
+                <div class="progress-step inactive">
+                    <div class="step-number">3</div>
+                    <span>Save & Share</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Choose Your Car Model</h1>
+            <p class="page-subtitle">
+                Select your actual car model that you want to customize. These are the most popular cars for modifications in Pakistan!
+            </p>
+        </div>
+
+        <div class="car-grid">
+            <!-- Honda Civic Card -->
+            <div class="car-card" onclick="selectCar('civic', '🏎️', 'Honda Civic')">
+                <div class="car-badge">Selected</div>
+                <div class="car-image-container">
+                    <div class="car-image">
+                        <img src="../CAR IMAGES/SelectionPage/honda_2008.jpg" alt="Civic_Car">
+                    </div>
+                </div>
+                <h3 class="car-name">Honda Civic</h3>
+                <p class="car-description">
+                    Pakistan's most popular car for modifications! Perfect for body kits, spoilers, and aggressive styling. Very common in Karachi and Lahore.
+                </p>
+                <ul class="car-features">
+                    <li>Most popular for mods in Pakistan</li>
+                    <li>Huge aftermarket support</li>
+                    <li>Sport body kits available</li>
+                    <li>Racing community favorite</li>
+                </ul>
+                <button class="select-button" onclick="openModels('honda')">
+                    Select Honda Civic
+                </button>
+            </div>
+
+            <!-- Toyota Corolla Card -->
+            <div class="car-card" onclick="selectCar('corolla', '🚗', 'Toyota Corolla')">
+                <div class="car-badge">Selected</div>
+                <div class="car-image-container">
+                    <div class="car-image">
+                        <img src="../CAR IMAGES/SelectionPage/corolla_2007.jpg" alt="Toyota_Corolla">
+                    </div>
+                </div>
+                <h3 class="car-name">Toyota Corolla</h3>
+                <p class="car-description">
+                    Classic choice for elegant modifications. Great for alloy rims, subtle spoilers, and professional look. Very reliable base.
+                </p>
+                <ul class="car-features">
+                    <li>Most reliable Pakistani favorite</li>
+                    <li>Great resale value after mods</li>
+                    <li>Professional styling options</li>
+                    <li>Family-friendly modifications</li>
+                </ul>
+                <button class="select-button" onclick="openModels('corolla')">
+                    Select Toyota Corolla
+                </button>
+            </div>
+
+            <!-- Suzuki Alto Card -->
+            <div class="car-card" onclick="selectCar('alto', '🚙', 'Suzuki Alto')">
+                <div class="car-badge">Selected</div>
+                <div class="car-image-container">
+                    <div class="car-image">
+                        <img src="../CAR IMAGES/SelectionPage/alto_2014.jpg" alt="Suzuki_Alto">
+                    </div>
+                </div>
+                <h3 class="car-name">Suzuki Alto</h3>
+                <p class="car-description">
+                    Small but mighty! Perfect for creative and colorful modifications. Popular among young car enthusiasts for unique styling.
+                </p>
+                <ul class="car-features">
+                    <li>Budget-friendly modifications</li>
+                    <li>Creative styling possibilities</li>
+                    <li>Easy to customize</li>
+                    <li>Youth favorite for first mods</li>
+                </ul>
+                <button class="select-button" onclick="openModels('alto')">
+                    Select Suzuki Alto
+                </button>
+            </div>
+
+            <!-- Audi A4 Card -->
+            <div class="car-card" onclick="selectCar('audi', '🚘', 'Audi A4')">
+                <div class="car-badge">Selected</div>
+                <div class="car-image-container">
+                    <div class="car-image">
+                        <img src="../CAR IMAGES/SelectionPage/audi_2015.jpg" alt="Audi">
+                    </div>
+                </div>
+                <h3 class="car-name">Audi A4</h3>
+                <p class="car-description">
+                    Luxury modifications for premium look. Perfect for high-end rims, subtle body kits, and sophisticated styling upgrades.
+                </p>
+                <ul class="car-features">
+                    <li>Premium luxury modifications</li>
+                    <li>High-end aftermarket parts</li>
+                    <li>Sophisticated styling</li>
+                    <li>Status symbol upgrades</li>
+                </ul>
+                <button class="select-button" onclick="openModels('audi')">
+                    Select Audi A4
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Continue Section -->
+    <!-- <div class="continue-section" id="continueSection">
+        <div class="continue-container">
+            <div class="selection-summary">
+                <div class="selected-car-icon" id="selectedIcon">🚗</div>
+                <div>
+                    <div class="selection-text">
+                        <span id="selectedCarName">Sedan</span> Selected
+                    </div>
+                    <div class="selection-subtext">Ready to start customizing</div>
+                </div>
+            </div>
+            <button class="continue-button" onclick="continueToCustomization()">
+                Continue to Customization
+                <span>→</span>
+            </button>
+        </div>
+    </div> -->
+    <!-- Side Pannel -->
+
+
+  <!-- Sliding Panel -->
+  <div id="modelPanel" class="model-panel">
+    <button class="close-btn" onclick="closePanel()">Close</button>
+    <h3 id="panelTitle"></h3>
+    <div class="model-list" id="modelList"></div>
+  </div>
+
+   
+
+
+   <script src="../JS/page2.js"></script>
+</body>
+</html>

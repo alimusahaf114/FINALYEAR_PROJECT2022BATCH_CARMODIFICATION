@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Honda Civic - MechMate</title>
+   <link rel="stylesheet" href="../CSS/page3.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">🚗 MechMate</div>
+        
+        <div class="car-info">
+            <div id="carTitle" class="page-title">Customize Your Car</div>
+        </div>
+        
+        <div class="header-controls">
+            <button class="control-btn" onclick="undoChange()">↶ Undo</button>
+            <button class="control-btn" onclick="redoChange()">↷ Redo</button>
+            <button class="control-btn" onclick="resetToDefault()">🔄 Reset</button>
+            <button class="control-btn" onclick="goBack()">← Back</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar - Parts Selection -->
+        <aside class="left-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">Customize Parts</div>
+                <div class="sidebar-subtitle">Click on any part to modify</div>
+            </div>
+            
+            <div class="parts-list">
+                <!-- Body Color -->
+                <div class="part-category">
+                    <div class="category-header active" onclick="toggleCategory(this)">
+                        <span class="category-icon">🎨</span>
+                        <span class="category-name">Body Color</span>
+                        <span class="category-arrow">▼</span>
+                    </div>
+                    <div class="part-options show">
+                        <div class="part-option selected" onclick="selectPart(this, 'color', 'red')">
+                            <div class="part-preview" style="background: #ef4444;">🎨</div>
+                            <div class="part-info">
+                                <div class="part-name">Racing Red</div>
+                                <div class="part-price">Rs. 15,000</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'color', 'blue')">
+                            <div class="part-preview" style="background: #3b82f6;">🎨</div>
+                            <div class="part-info">
+                                <div class="part-name">Ocean Blue</div>
+                                <div class="part-price">Rs. 15,000</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'color', 'black')">
+                            <div class="part-preview" style="background: #1f2937;">🎨</div>
+                            <div class="part-info">
+                                <div class="part-name">Matte Black</div>
+                                <div class="part-price">Rs. 18,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rims -->
+                <div class="part-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-icon">⚙️</span>
+                        <span class="category-name">Rims & Wheels</span>
+                        <span class="category-arrow">▼</span>
+                    </div>
+                    <div class="part-options">
+                        <div class="part-option selected" onclick="selectPart(this, 'rims', 'stock')">
+                            <div class="part-preview">⚙️</div>
+                            <div class="part-info">
+                                <div class="part-name">Stock Rims</div>
+                                <div class="part-price">Rs. 0</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'rims', 'sport')">
+                            <div class="part-preview">🔘</div>
+                            <div class="part-info">
+                                <div class="part-name">Sport Alloys</div>
+                                <div class="part-price">Rs. 45,000</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'rims', 'chrome')">
+                            <div class="part-preview">✨</div>
+                            <div class="part-info">
+                                <div class="part-name">Chrome Rims</div>
+                                <div class="part-price">Rs. 65,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spoilers -->
+                <div class="part-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-icon">✈️</span>
+                        <span class="category-name">Spoilers</span>
+                        <span class="category-arrow">▼</span>
+                    </div>
+                    <div class="part-options">
+                        <div class="part-option selected" onclick="selectPart(this, 'spoiler', 'none')">
+                            <div class="part-preview">🚫</div>
+                            <div class="part-info">
+                                <div class="part-name">No Spoiler</div>
+                                <div class="part-price">Rs. 0</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'spoiler', 'subtle')">
+                            <div class="part-preview">✈️</div>
+                            <div class="part-info">
+                                <div class="part-name">Subtle Spoiler</div>
+                                <div class="part-price">Rs. 12,000</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'spoiler', 'racing')">
+                            <div class="part-preview">🛩️</div>
+                            <div class="part-info">
+                                <div class="part-name">Racing Wing</div>
+                                <div class="part-price">Rs. 25,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bumpers -->
+                <div class="part-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-icon">🛡️</span>
+                        <span class="category-name">Bumpers</span>
+                        <span class="category-arrow">▼</span>
+                    </div>
+                    <div class="part-options">
+                        <div class="part-option selected" onclick="selectPart(this, 'bumper', 'stock')">
+                            <div class="part-preview">🛡️</div>
+                            <div class="part-info">
+                                <div class="part-name">Stock Bumper</div>
+                                <div class="part-price">Rs. 0</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'bumper', 'sport')">
+                            <div class="part-preview">⚡</div>
+                            <div class="part-info">
+                                <div class="part-name">Sport Bumper</div>
+                                <div class="part-price">Rs. 35,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lights -->
+                <div class="part-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-icon">💡</span>
+                        <span class="category-name">Lights</span>
+                        <span class="category-arrow">▼</span>
+                    </div>
+                    <div class="part-options">
+                        <div class="part-option selected" onclick="selectPart(this, 'lights', 'stock')">
+                            <div class="part-preview">💡</div>
+                            <div class="part-info">
+                                <div class="part-name">Stock Lights</div>
+                                <div class="part-price">Rs. 0</div>
+                            </div>
+                        </div>
+                        <div class="part-option" onclick="selectPart(this, 'lights', 'led')">
+                            <div class="part-preview">🔆</div>
+                            <div class="part-info">
+                                <div class="part-name">LED Headlights</div>
+                                <div class="part-price">Rs. 28,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center - Car Preview -->
+        <main class="preview-area">
+            <div class="preview-container" id="previewContainer">
+                <div class="car-canvas" id="carCanvas">
+                    <!-- Base car layer -->
+                    <div class="car-layer car-base" id="carBase">🏎️</div>
+                    <!-- Parts layers will be added dynamically -->
+                    <div class="car-layer car-part" id="spoilerLayer" style="display: none;">✈️</div>
+                    <div class="car-layer car-part" id="rimsLayer" style="display: none;">⚙️</div>
+                </div>
+            </div>
+            
+            <div class="preview-controls">
+                <button class="preview-control" onclick="zoomOut()" title="Zoom Out">🔍-</button>
+                <button class="preview-control" onclick="zoomIn()" title="Zoom In">🔍+</button>
+                <button class="preview-control" onclick="resetView()" title="Reset View">🎯</button>
+                <button class="preview-control" onclick="captureImage()" title="Take Screenshot">📸</button>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Customization Options -->
+        <aside class="right-sidebar">
+            <div class="customization-header">
+                <div class="customization-title">Fine Tuning</div>
+                <div class="current-selection" id="currentSelection">Body Color Selected</div>
+            </div>
+            
+            <div class="customization-content">
+                <!-- Color Section -->
+                <div class="color-section">
+                    <div class="section-title">Quick Colors</div>
+                    <div class="color-grid">
+                        <div class="color-option selected" style="background: #ef4444;" onclick="applyColor('#ef4444')"></div>
+                        <div class="color-option" style="background: #3b82f6;" onclick="applyColor('#3b82f6')"></div>
+                        <div class="color-option" style="background: #10b981;" onclick="applyColor('#10b981')"></div>
+                        <div class="color-option" style="background: #f59e0b;" onclick="applyColor('#f59e0b')"></div>
+                        <div class="color-option" style="background: #8b5cf6;" onclick="applyColor('#8b5cf6')"></div>
+                        <div class="color-option" style="background: #ec4899;" onclick="applyColor('#ec4899')"></div>
+                        <div class="color-option" style="background: #1f2937;" onclick="applyColor('#1f2937')"></div>
+                        <div class="color-option" style="background: #ffffff; border: 1px solid #ccc;" onclick="applyColor('#ffffff')"></div>
+                    </div>
+                    
+                    <div class="custom-color">
+                        <div class="option-label">Custom Color</div>
+                        <input type="color" class="color-input" id="customColor" onchange="applyCustomColor()" value="#ef4444">
+                    </div>
+                </div>
+
+                <!-- Options Section -->
+                <div class="options-section">
+                    <div class="section-title">Options</div>
+                    
+                    <div class="option-group">
+                        <div class="option-label">Brightness</div>
+                        <input type="range" class="option-slider" min="0.5" max="1.5" step="0.1" value="1" onchange="adjustBrightness(this.value)">
+                    </div>
+                    
+                    <div class="option-group">
+                        <div class="option-label">Zoom Level</div>
+                        <input type="range" class="option-slider" min="0.5" max="2" step="0.1" value="1" onchange="adjustZoom(this.value)">
+                    </div>
+                    
+                    <div class="toggle-option">
+                        <span>Tinted Windows</span>
+                        <div class="toggle-switch" onclick="toggleWindows(this)">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="toggle-option">
+                        <span>Racing Stripes</span>
+                        <div class="toggle-switch" onclick="toggleStripes(this)">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="toggle-option">
+                        <span>Neon Underglow</span>
+                        <div class="toggle-switch" onclick="toggleUnderglow(this)">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="action-bar">
+        <div class="design-info">
+            <div class="total-cost">Total: <span id="totalCost">Rs. 15,000</span></div>
+            <div class="modifications-count"><span id="modCount">3</span> modifications applied</div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn secondary" onclick="previewFullscreen()">👁️ Preview</button>
+            <button class="action-btn primary" onclick="saveDesign()">💾 Save Design</button>
+            <button class="action-btn success" onclick="shareDesign()">🔗 Share</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="../JS/page3.js"></script>
+</body>
+</html>

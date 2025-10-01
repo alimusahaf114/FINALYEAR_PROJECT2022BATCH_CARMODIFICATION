@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Customization</title>
+</head>
+<body>
+  <h2 id="carTitle"></h2>
+  <div id="carImage"></div>
+
+  <script>
+    // Function to get URL parameter
+    function getParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get car from URL
+    const car = getParameter("car");
+
+    if (car) {
+      document.getElementById("carTitle").innerText = "Customize your " + car;
+
+      // Example: show car image (make sure image names match)
+      document.getElementById("carImage").innerHTML =
+        `<img src="../CAR IMAGES/SelectionPage/${car.toLowerCase()}.jpg" width="300">`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,553 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f1f5f9;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .car-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .car-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .control-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 300px;
+            height: calc(100vh - 80px);
+        }
+
+        /* Left Sidebar - Parts Selection */
+        .left-sidebar {
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .parts-list {
+            padding: 1rem;
+        }
+
+        .part-category {
+            margin-bottom: 1rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-header:hover {
+            background: #e2e8f0;
+        }
+
+        .category-header.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .category-icon {
+            font-size: 1.2rem;
+        }
+
+        .category-name {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .category-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .category-header.active .category-arrow {
+            transform: rotate(180deg);
+        }
+
+        .part-options {
+            margin-left: 1rem;
+            display: none;
+        }
+
+        .part-options.show {
+            display: block;
+        }
+
+        .part-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            margin: 0.25rem 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .part-option:hover {
+            background: #f1f5f9;
+        }
+
+        .part-option.selected {
+            background: #dbeafe;
+            border-color: #2563eb;
+        }
+
+        .part-preview {
+            width: 40px;
+            height: 40px;
+            background: #f8fafc;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .part-info {
+            flex: 1;
+        }
+
+        .part-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+
+        .part-price {
+            color: #10b981;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Center - Car Preview */
+        .preview-area {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .car-canvas {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .car-layer {
+            position: absolute;
+            top: -80px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16rem;
+            transition: all 0.5s ease;
+        }
+
+        .car-base {
+            background-size: cover;
+            z-index: 1;
+            color: #3b82f6;
+        }
+
+        .car-part {
+            z-index: 2;
+            color: #10b981;
+        }
+
+        .preview-controls {
+            position: absolute;
+            bottom: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .preview-control {
+            background: none;
+            border: none;
+            padding: 0rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-control:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Right Sidebar - Customization Options */
+        .right-sidebar {
+            background: white;
+            border-left: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            height: inherit;
+        }
+
+        .customization-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .customization-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-selection {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .customization-content {
+            width: 100%;
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            scroll-behavior: auto;
+        }
+
+        .color-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: #1e293b;
+            transform: scale(1.1);
+        }
+
+        .color-option::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .color-option.selected::after {
+            opacity: 1;
+        }
+
+        .custom-color {
+            margin-top: 1rem;
+        }
+
+        .color-input {
+            width: 100%;
+            height: 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .options-section {
+            margin-bottom: 2rem;
+        }
+
+        .option-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        .option-slider {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .toggle-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 25px;
+            background: #cbd5e1;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #10b981;
+        }
+
+        .toggle-knob {
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-knob {
+            transform: translateX(25px);
+        }
+
+        /* Bottom Action Bar */
+        .action-bar {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 280px;
+            right: 300px;
+            z-index: 50;
+        }
+
+        .design-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .total-cost {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1rem;
+        }
+
+        .modifications-count {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn.secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .action-btn.secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+        }
+
+        .action-btn.success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .action-btn.success:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 250px 1fr 250px;
+            }
+            
+            .car-canvas {
+                width: 500px;
+                height: 350px;
+            }
+            
+            .car-layer {
+                font-size: 10rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .left-sidebar, .right-sidebar {
+                display: none;
+            }
+            
+            .action-bar {
+                left: 0;
+                right: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+        }
